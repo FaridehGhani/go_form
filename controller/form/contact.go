@@ -1,26 +1,33 @@
-package handler
+package form
 
 import (
+	"github.com/FaridehGhani/go_form/model/form"
 	"html/template"
 	"log"
 	"net/http"
-
-	"github.com/FaridehGhani/go_form/form"
 )
 
 func ContactForm(w http.ResponseWriter, r *http.Request) {
-	render(w, "templates/contact.html", nil)
+	render(w, "view/templates/contact.html", nil)
 }
 
-func SubmitMessage(w http.ResponseWriter, r *http.Request) {
+func SubmitContactForm(w http.ResponseWriter, r *http.Request) {
 	// validate form parameters
-	msg := &form.Contact{
+	contact := &form.Contact{
 		Email:   r.PostFormValue("email"),
 		Content: r.PostFormValue("content"),
 	}
 
-	if msg.Validate() == false {
-		render(w, "templates/contact.html", msg)
+	if contact.Validate() == false {
+		render(w, "view/templates/contact.html", contact)
+
+		return
+	}
+
+	_, err := contact.CreateContent()
+	if err != nil {
+		contact.Errors = err.Error()
+		render(w, "view/templates/contact.html", contact)
 
 		return
 	}
@@ -29,8 +36,8 @@ func SubmitMessage(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/submitted", http.StatusSeeOther)
 }
 
-func SubmittedMessage(w http.ResponseWriter, r *http.Request) {
-	render(w, "templates/submitted.html", nil)
+func SubmittedContactForm(w http.ResponseWriter, r *http.Request) {
+	render(w, "view/templates/submitted.html", nil)
 }
 
 func render(w http.ResponseWriter, filename string, data interface{}) {

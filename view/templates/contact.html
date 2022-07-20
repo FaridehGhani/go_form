@@ -1,17 +1,14 @@
-<h1>Contact</h1>
+<h1>Contact Form</h1>
 <form action="/" method="POST" novalidate>
     <div>
-        {{ with .Errors.Email }}
-        <p class="error">{{ . }}</p>
+        {{ with .Errors }}
+        <b><p style="color:red;" class="error">{{ . }}</p></b>
         {{ end }}
-        <p><label>email:</label></p>
+        <p><label><b>email:</b></label></p>
         <p><input type="email" name="email" value="{{ .Email }}"></p>
     </div>
     <div>
-        {{ with .Errors.Content }}
-        <p class="error" >{{ . }}</p>
-        {{ end }}
-        <p><label>message:</label></p>
+        <p><label><b>message:</b></label></p>
         <p><textarea name="content">{{ .Content }}</textarea></p>
     </div>
     <div>

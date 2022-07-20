@@ -1,0 +1,25 @@
+version: '2.3'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: form-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: form
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./.persist/mysql:/data/db
+
+  phpmyadmin:
+    depends_on:
+      - mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: form-phpmyadmin
+    environment:
+      PMA_HOST: mysql
+    ports:
+      - "8081:80"
