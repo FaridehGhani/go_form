@@ -1,7 +1,5 @@
 package main
-
 import (
-	"github.com/FaridehGhani/go_form/model/form"
 	"log"
 	"net/http"
 	"os"
@@ -11,6 +9,7 @@ import (
 
 	"github.com/FaridehGhani/go_form/api/route"
 	"github.com/FaridehGhani/go_form/infra/mysql"
+	"github.com/FaridehGhani/go_form/model/form"
 )
 
 func init() {
