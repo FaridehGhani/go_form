@@ -1,4 +1,5 @@
 package main
+
 import (
 	"log"
 	"net/http"
@@ -29,7 +30,7 @@ func main() {
 	// load routes
 	routes := route.GetRouter()
 	log.Print("listening ...")
-	err := http.ListenAndServe(os.Getenv("server_port"), routes)
+	err := http.ListenAndServe(os.Getenv("SERVER_PORT"), routes)
 	if err != nil {
 		log.Fatal(err)
 	}
