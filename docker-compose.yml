@@ -1,15 +1,6 @@
 version: '2.3'
 
 services:
-  go-form:
-    build:
-      context: .
-    container_name: go-form
-    ports:
-      - "8000:8000"
-    volumes:
-     - $GOPATH/src:/go/src
-
   mysql:
     image: mysql:latest
     container_name: form-mysql

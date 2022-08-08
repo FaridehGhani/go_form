@@ -1,10 +1,11 @@
 package form
 
 import (
-	"github.com/FaridehGhani/go_form/model/form"
 	"html/template"
 	"log"
 	"net/http"
+
+	"github.com/FaridehGhani/go_form/model/form"
 )
 
 func ContactForm(w http.ResponseWriter, r *http.Request) {

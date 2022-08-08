@@ -1,10 +1,11 @@
 package route
 
 import (
-	"github.com/FaridehGhani/go_form/controller/form"
 	"net/http"
 
 	"github.com/bmizerany/pat"
+
+	"github.com/FaridehGhani/go_form/controller/form"
 )
 
 func GetRouter() *pat.PatternServeMux {
